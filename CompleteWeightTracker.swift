@@ -1,7 +1,7 @@
 import SwiftUI
 import PhotosUI
 
-// MARK: - Data Models
+// MARK: - Data Models (Simplified non-CoreData version)
 struct WeightEntry: Identifiable, Codable {
     var id = UUID()
     var date: Date
@@ -25,9 +25,19 @@ struct WeightEntry: Identifiable, Codable {
         self.weight = weight
     }
     
-    // Computed properties for display
+    // MARK: - Display Properties
     var displayWeight: String {
         weight > 0 ? String(format: "%.1f", weight) : ""
+    }
+    
+    var displayBodyFat: String {
+        guard let bodyFat = bodyFat, bodyFat > 0 else { return "" }
+        return String(format: "%.1f", bodyFat)
+    }
+    
+    var displayMuscleMass: String {
+        guard let muscleMass = muscleMass, muscleMass > 0 else { return "" }
+        return String(format: "%.1f", muscleMass)
     }
     
     var displayBloodPressure: String {
@@ -44,7 +54,7 @@ struct WeightEntry: Identifiable, Codable {
         return ""
     }
     
-    // Helper properties
+    // MARK: - Helper Properties
     var hasVitalSigns: Bool {
         return (systolicBP ?? 0) > 0 || (diastolicBP ?? 0) > 0 || (restingHeartRate ?? 0) > 0
     }
@@ -58,38 +68,61 @@ struct WeightEntry: Identifiable, Codable {
         return photoData != nil
     }
     
-    // Health categorization
-    var bloodPressureCategory: BPCategory {
+    var wrappedNotes: String {
+        return notes ?? ""
+    }
+    
+    // MARK: - Health Categorization
+    var bloodPressureCategory: String {
         guard let systolic = systolicBP, let diastolic = diastolicBP,
-              systolic > 0 && diastolic > 0 else {
-            return .unknown
-        }
+              systolic > 0 && diastolic > 0 else { return "" }
         
         if systolic < 120 && diastolic < 80 {
-            return .normal
+            return "Normal"
         } else if systolic < 130 && diastolic < 80 {
-            return .elevated
+            return "Elevated"
         } else if (systolic >= 130 && systolic < 140) || (diastolic >= 80 && diastolic < 90) {
-            return .stage1High
+            return "Stage 1 High"
         } else if systolic >= 140 || diastolic >= 90 {
-            return .stage2High
+            return "Stage 2 High"
         } else {
-            return .unknown
+            return "Check with doctor"
         }
     }
     
-    var heartRateCategory: HRCategory {
-        guard let hr = restingHeartRate, hr > 0 else { return .unknown }
+    var heartRateCategory: String {
+        guard let hr = restingHeartRate, hr > 0 else { return "" }
         
         if hr < 60 {
-            return .low
+            return "Low (Bradycardia)"
         } else if hr <= 100 {
-            return .normal
+            return "Normal"
         } else {
-            return .high
+            return "High (Tachycardia)"
         }
     }
     
+    var bloodPressureCategoryColor: Color {
+        let category = bloodPressureCategory
+        switch category {
+        case "Normal": return .green
+        case "Elevated": return .yellow
+        case "Stage 1 High": return .orange
+        case "Stage 2 High": return .red
+        default: return .gray
+        }
+    }
+    
+    var heartRateCategoryColor: Color {
+        let category = heartRateCategory
+        switch category {
+        case "Normal": return .green
+        case "Low (Bradycardia)", "High (Tachycardia)": return .orange
+        default: return .gray
+        }
+    }
+    
+    // MARK: - Photo Methods
     mutating func setPhoto(_ image: UIImage) {
         photoData = image.jpegData(compressionQuality: 0.8)
     }
@@ -103,43 +136,9 @@ struct WeightEntry: Identifiable, Codable {
     }
 }
 
-// MARK: - Health Categories
-enum BPCategory: String, CaseIterable {
-    case normal = "Normal"
-    case elevated = "Elevated"
-    case stage1High = "Stage 1 High"
-    case stage2High = "Stage 2 High"
-    case unknown = "Unknown"
-    
-    var color: Color {
-        switch self {
-        case .normal: return .green
-        case .elevated: return .yellow
-        case .stage1High: return .orange
-        case .stage2High: return .red
-        case .unknown: return .gray
-        }
-    }
-}
-
-enum HRCategory: String, CaseIterable {
-    case low = "Low (Bradycardia)"
-    case normal = "Normal"
-    case high = "High (Tachycardia)"
-    case unknown = "Unknown"
-    
-    var color: Color {
-        switch self {
-        case .low, .high: return .orange
-        case .normal: return .green
-        case .unknown: return .gray
-        }
-    }
-}
-
 // MARK: - Main App
 @main
-struct WeightTrackerApp: App {
+struct CompleteWeightTrackerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -176,12 +175,14 @@ struct ContentView: View {
     
     private func loadSampleData() {
         if entries.isEmpty {
+            // Sample entry with vital signs
             let sampleEntry1 = WeightEntry(date: Date().addingTimeInterval(-86400 * 7), weight: 180.5)
             var modifiedEntry1 = sampleEntry1
             modifiedEntry1.systolicBP = 128
             modifiedEntry1.diastolicBP = 85
             modifiedEntry1.restingHeartRate = 72
             modifiedEntry1.bodyFat = 18.5
+            modifiedEntry1.muscleMass = 145.0
             modifiedEntry1.notes = "Feeling good this week!"
             
             let sampleEntry2 = WeightEntry(date: Date().addingTimeInterval(-86400 * 3), weight: 179.2)
@@ -189,7 +190,7 @@ struct ContentView: View {
             modifiedEntry2.systolicBP = 135
             modifiedEntry2.diastolicBP = 88
             modifiedEntry2.restingHeartRate = 78
-            modifiedEntry2.muscleMass = 140.0
+            modifiedEntry2.muscleMass = 142.0
             modifiedEntry2.notes = "Good workout today"
             
             entries = [modifiedEntry1, modifiedEntry2]
@@ -218,6 +219,7 @@ struct AddWeightView: View {
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var photoImage: UIImage?
     
+    @State private var showingCamera = false
     @State private var showingAlert = false
     @State private var alertMessage = ""
     
@@ -253,7 +255,7 @@ struct AddWeightView: View {
                     }
                     .padding(.horizontal)
                     
-                    // Vital signs section - ENHANCED WITH REAL-TIME FEEDBACK
+                    // Vital signs section - ENHANCED
                     VStack(alignment: .leading, spacing: 15) {
                         Text("🩺 Vital Signs (Optional)")
                             .font(.headline)
@@ -309,13 +311,13 @@ struct AddWeightView: View {
                                 if !systolicBP.isEmpty && !diastolicBP.isEmpty,
                                    let systolic = Double(systolicBP),
                                    let diastolic = Double(diastolicBP) {
-                                    let category = bloodPressureCategoryFor(systolic: systolic, diastolic: diastolic)
+                                    let tempEntry = createTempEntryForPreview()
                                     HStack {
                                         Image(systemName: "heart.circle.fill")
-                                            .foregroundColor(category.color)
-                                        Text(category.rawValue)
+                                            .foregroundColor(tempEntry.bloodPressureCategoryColor)
+                                        Text(tempEntry.bloodPressureCategory)
                                             .font(.caption)
-                                            .foregroundColor(category.color)
+                                            .foregroundColor(tempEntry.bloodPressureCategoryColor)
                                             .fontWeight(.medium)
                                     }
                                 }
@@ -342,13 +344,13 @@ struct AddWeightView: View {
                                 // Real-time HR feedback
                                 if !restingHeartRate.isEmpty,
                                    let heartRate = Double(restingHeartRate) {
-                                    let category = heartRateCategoryFor(heartRate: heartRate)
+                                    let tempEntry = createTempEntryForPreview()
                                     HStack {
                                         Image(systemName: "heart.fill")
-                                            .foregroundColor(category.color)
-                                        Text(category.rawValue)
+                                            .foregroundColor(tempEntry.heartRateCategoryColor)
+                                        Text(tempEntry.heartRateCategory)
                                             .font(.caption)
-                                            .foregroundColor(category.color)
+                                            .foregroundColor(tempEntry.heartRateCategoryColor)
                                             .fontWeight(.medium)
                                     }
                                 }
@@ -379,9 +381,9 @@ struct AddWeightView: View {
                     }
                     .padding(.horizontal)
                     
-                    // Photo section
+                    // PHOTO SECTION - FIXED CAMERA FUNCTIONALITY
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("Progress Photo (Optional)")
+                        Text("📸 Progress Photo (Optional)")
                             .font(.headline)
                             .foregroundColor(.primary)
                         
@@ -403,8 +405,23 @@ struct AddWeightView: View {
                                     alignment: .topTrailing
                                 )
                         } else {
-                            PhotosPicker("Choose Photo", selection: $selectedPhoto, matching: .images)
+                            VStack(spacing: 15) {
+                                // FIXED: Camera button always appears
+                                Button("📸 Take Photo") {
+                                    showingCamera = true
+                                }
                                 .buttonStyle(.bordered)
+                                .foregroundColor(.blue)
+                                
+                                // Photo picker button
+                                PhotosPicker("🖼️ Choose Photo", selection: $selectedPhoto, matching: .images)
+                                    .buttonStyle(.bordered)
+                                    .foregroundColor(.green)
+                                
+                                Text("📱 Camera opens photo library in simulator")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
                     .padding(.horizontal)
@@ -440,6 +457,9 @@ struct AddWeightView: View {
                 }
             }
         }
+        .sheet(isPresented: $showingCamera) {
+            CameraView(image: $photoImage)
+        }
         .alert("Entry Saved", isPresented: $showingAlert) {
             Button("OK") {
                 clearForm()
@@ -447,6 +467,14 @@ struct AddWeightView: View {
         } message: {
             Text(alertMessage)
         }
+    }
+    
+    private func createTempEntryForPreview() -> WeightEntry {
+        var temp = WeightEntry()
+        temp.systolicBP = Double(systolicBP)
+        temp.diastolicBP = Double(diastolicBP)
+        temp.restingHeartRate = Double(restingHeartRate)
+        return temp
     }
     
     private func saveEntry() {
@@ -483,7 +511,7 @@ struct AddWeightView: View {
         entries.append(newEntry)
         entries.sort { $0.date > $1.date }
         
-        alertMessage = "Weight entry saved successfully!"
+        alertMessage = "Weight entry with vital signs saved successfully!"
         showingAlert = true
     }
     
@@ -505,33 +533,9 @@ struct AddWeightView: View {
         selectedPhoto = nil
         date = Date()
     }
-    
-    private func bloodPressureCategoryFor(systolic: Double, diastolic: Double) -> BPCategory {
-        if systolic < 120 && diastolic < 80 {
-            return .normal
-        } else if systolic < 130 && diastolic < 80 {
-            return .elevated
-        } else if (systolic >= 130 && systolic < 140) || (diastolic >= 80 && diastolic < 90) {
-            return .stage1High
-        } else if systolic >= 140 || diastolic >= 90 {
-            return .stage2High
-        } else {
-            return .unknown
-        }
-    }
-    
-    private func heartRateCategoryFor(heartRate: Double) -> HRCategory {
-        if heartRate < 60 {
-            return .low
-        } else if heartRate <= 100 {
-            return .normal
-        } else {
-            return .high
-        }
-    }
 }
 
-// MARK: - History View  
+// MARK: - History View
 struct HistoryView: View {
     @Binding var entries: [WeightEntry]
     @State private var selectedEntry: WeightEntry?
@@ -592,7 +596,7 @@ struct WeightEntryRow: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
-                if entry.hasMeasurements || entry.hasVitalSigns || (entry.notes?.isEmpty == false) {
+                if entry.hasMeasurements || entry.hasVitalSigns || !entry.wrappedNotes.isEmpty {
                     HStack {
                         if entry.hasMeasurements {
                             Image(systemName: "ruler")
@@ -604,7 +608,7 @@ struct WeightEntryRow: View {
                                 .foregroundColor(.red)
                                 .font(.caption)
                         }
-                        if entry.notes?.isEmpty == false {
+                        if !entry.wrappedNotes.isEmpty {
                             Image(systemName: "note.text")
                                 .foregroundColor(.green)
                                 .font(.caption)
@@ -618,6 +622,56 @@ struct WeightEntryRow: View {
                     .font(.caption2)
                 }
                 
+                // Display body measurements if available - NEW SECTION
+                if entry.hasMeasurements {
+                    VStack(alignment: .leading, spacing: 4) {
+                        let measurements = [
+                            ("Arms", entry.arms, "💪"),
+                            ("Chest", entry.chest, "🫁"),
+                            ("Waist", entry.waist, "⚖️"),
+                            ("Hips", entry.hips, "🍑"),
+                            ("Legs", entry.legs, "🦵"),
+                            ("Neck", entry.neck, "🧣")
+                        ]
+                        
+                        let availableMeasurements = measurements.filter { $0.1 != nil && $0.1! > 0 }
+                        
+                        if !availableMeasurements.isEmpty {
+                            HStack {
+                                Image(systemName: "ruler")
+                                    .foregroundColor(.blue)
+                                Text("Body: ")
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                                
+                                Text(availableMeasurements.map { "\($0.2)\(String(format: "%.1f\"", $0.1!))" }.joined(separator: " "))
+                                    .font(.caption)
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                        
+                        if let bodyFat = entry.bodyFat, bodyFat > 0 {
+                            HStack {
+                                Image(systemName: "percent")
+                                    .foregroundColor(.orange)
+                                Text("Body Fat: \(String(format: "%.1f", bodyFat))%")
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                            }
+                        }
+                        
+                        if let muscleMass = entry.muscleMass, muscleMass > 0 {
+                            HStack {
+                                Image(systemName: "figure.strengthtraining.traditional")
+                                    .foregroundColor(.green)
+                                Text("Muscle: \(String(format: "%.1f", muscleMass)) lbs")
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                            }
+                        }
+                    }
+                }
+                
                 // Display vital signs if available - ENHANCED DISPLAY
                 if entry.hasVitalSigns {
                     VStack(alignment: .leading, spacing: 4) {
@@ -629,12 +683,12 @@ struct WeightEntryRow: View {
                                     .font(.caption)
                                     .fontWeight(.medium)
                                 
-                                Text("(\(entry.bloodPressureCategory.rawValue))")
+                                Text("(\(entry.bloodPressureCategory))")
                                     .font(.caption2)
                                     .padding(.horizontal, 6)
                                     .padding(.vertical, 2)
-                                    .background(entry.bloodPressureCategory.color.opacity(0.2))
-                                    .foregroundColor(entry.bloodPressureCategory.color)
+                                    .background(entry.bloodPressureCategoryColor.opacity(0.2))
+                                    .foregroundColor(entry.bloodPressureCategoryColor)
                                     .cornerRadius(4)
                             }
                         }
@@ -646,12 +700,12 @@ struct WeightEntryRow: View {
                                     .font(.caption)
                                     .fontWeight(.medium)
                                 
-                                Text("(\(entry.heartRateCategory.rawValue))")
+                                Text("(\(entry.heartRateCategory))")
                                     .font(.caption2)
                                     .padding(.horizontal, 6)
                                     .padding(.vertical, 2)
-                                    .background(entry.heartRateCategory.color.opacity(0.2))
-                                    .foregroundColor(entry.heartRateCategory.color)
+                                    .background(entry.heartRateCategoryColor.opacity(0.2))
+                                    .foregroundColor(entry.heartRateCategoryColor)
                                     .cornerRadius(4)
                             }
                         }
@@ -713,7 +767,7 @@ struct EditWeightView: View {
                     }
                 }
                 
-                Section("Vital Signs") {
+                Section("🩺 Vital Signs") {
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Blood Pressure")
                             .font(.subheadline)
@@ -800,12 +854,30 @@ struct ChartsView: View {
                         .padding()
                     } else {
                         VStack(alignment: .leading, spacing: 15) {
-                            Text("Weight Trend")
+                            Text("📊 Weight Summary")
                                 .font(.headline)
                                 .padding(.horizontal)
                             
-                            Text("📊 Weight: \(entries.last?.displayWeight ?? "0") lbs (most recent)")
-                                .padding(.horizontal)
+                            let mostRecent = entries.sorted { $0.date > $1.date }.first
+                            let earliest = entries.sorted { $0.date < $1.date }.first
+                            
+                            VStack(alignment: .leading, spacing: 8) {
+                                if let current = mostRecent {
+                                    Text("Current Weight: \(current.displayWeight) lbs")
+                                        .fontWeight(.medium)
+                                }
+                                
+                                if let start = earliest, let current = mostRecent {
+                                    let change = current.weight - start.weight
+                                    HStack {
+                                        Text("Total Change:")
+                                        Text("\(change >= 0 ? "+" : "")\(change, specifier: "%.1f") lbs")
+                                            .fontWeight(.medium)
+                                            .foregroundColor(change >= 0 ? .red : .green)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal)
                             
                             if entries.contains(where: { $0.hasVitalSigns }) {
                                 Divider()
@@ -814,25 +886,25 @@ struct ChartsView: View {
                                     .font(.headline)
                                     .padding(.horizontal)
                                 
-                                if let mostRecent = entries.first {
+                                if let mostRecent = mostRecent {
                                     VStack(alignment: .leading, spacing: 8) {
                                         if !mostRecent.displayBloodPressure.isEmpty {
                                             HStack {
-                                                Text("Blood Pressure:")
+                                                Text("Latest Blood Pressure:")
                                                 Text(mostRecent.displayBloodPressure + " mmHg")
                                                     .fontWeight(.medium)
-                                                Text("(\(mostRecent.bloodPressureCategory.rawValue))")
-                                                    .foregroundColor(mostRecent.bloodPressureCategory.color)
+                                                Text("(\(mostRecent.bloodPressureCategory))")
+                                                    .foregroundColor(mostRecent.bloodPressureCategoryColor)
                                             }
                                         }
                                         
                                         if !mostRecent.displayRestingHeartRate.isEmpty {
                                             HStack {
-                                                Text("Resting HR:")
+                                                Text("Latest Resting HR:")
                                                 Text(mostRecent.displayRestingHeartRate + " bpm")
                                                     .fontWeight(.medium)
-                                                Text("(\(mostRecent.heartRateCategory.rawValue))")
-                                                    .foregroundColor(mostRecent.heartRateCategory.color)
+                                                Text("(\(mostRecent.heartRateCategory))")
+                                                    .foregroundColor(mostRecent.heartRateCategoryColor)
                                             }
                                         }
                                     }
@@ -844,8 +916,54 @@ struct ChartsView: View {
                     }
                 }
             }
-            .navigationTitle("Charts")
+            .navigationTitle("Charts & Analytics")
             .navigationBarTitleDisplayMode(.large)
+        }
+    }
+}
+
+// MARK: - Camera View (FIXED)
+struct CameraView: UIViewControllerRepresentable {
+    @Binding var image: UIImage?
+    @Environment(\.presentationMode) var presentationMode
+    
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.delegate = context.coordinator
+        
+        // Check if camera is available (it won't be in simulator)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            picker.sourceType = .camera
+        } else {
+            // Fallback to photo library in simulator
+            picker.sourceType = .photoLibrary
+        }
+        
+        return picker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        let parent: CameraView
+        
+        init(_ parent: CameraView) {
+            self.parent = parent
+        }
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let image = info[.originalImage] as? UIImage {
+                parent.image = image
+            }
+            parent.presentationMode.wrappedValue.dismiss()
+        }
+        
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            parent.presentationMode.wrappedValue.dismiss()
         }
     }
 }
