@@ -15,6 +15,9 @@ struct AddWeightView: View {
     @State private var hips = ""
     @State private var legs = ""
     @State private var neck = ""
+    @State private var systolicBP = ""
+    @State private var diastolicBP = ""
+    @State private var restingHeartRate = ""
     @State private var notes = ""
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var photoImage: UIImage?
@@ -74,6 +77,106 @@ struct AddWeightView: View {
                             MeasurementField(title: "Hips", value: $hips, unit: "in")
                             MeasurementField(title: "Legs", value: $legs, unit: "in")
                             MeasurementField(title: "Neck", value: $neck, unit: "in")
+                        }
+                    }
+                    .padding(.horizontal)
+                    
+                    // Vital signs section
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("Vital Signs (Optional)")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        
+                        VStack(spacing: 15) {
+                            // Blood Pressure Section
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text("Blood Pressure")
+                                    .font(.subheadline)
+                                    .foregroundColor(.red)
+                                    .fontWeight(.medium)
+                                
+                                HStack(spacing: 10) {
+                                    VStack(alignment: .leading, spacing: 5) {
+                                        Text("Systolic")
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                        
+                                        HStack {
+                                            TextField("120", text: $systolicBP)
+                                                .keyboardType(.numberPad)
+                                                .textFieldStyle(.roundedBorder)
+                                            Text("mmHg")
+                                                .font(.caption)
+                                                .foregroundColor(.secondary)
+                                        }
+                                    }
+                                    
+                                    Text("/")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.secondary)
+                                        .padding(.top, 15)
+                                    
+                                    VStack(alignment: .leading, spacing: 5) {
+                                        Text("Diastolic")
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                        
+                                        HStack {
+                                            TextField("80", text: $diastolicBP)
+                                                .keyboardType(.numberPad)
+                                                .textFieldStyle(.roundedBorder)
+                                            Text("mmHg")
+                                                .font(.caption)
+                                                .foregroundColor(.secondary)
+                                        }
+                                    }
+                                }
+                                
+                                // Blood pressure category indicator
+                                if !systolicBP.isEmpty && !diastolicBP.isEmpty,
+                                   let systolic = Double(systolicBP),
+                                   let diastolic = Double(diastolicBP) {
+                                    HStack {
+                                        Image(systemName: "heart.circle.fill")
+                                            .foregroundColor(bloodPressureColor(systolic: systolic, diastolic: diastolic))
+                                        Text(bloodPressureCategory(systolic: systolic, diastolic: diastolic))
+                                            .font(.caption)
+                                            .foregroundColor(bloodPressureColor(systolic: systolic, diastolic: diastolic))
+                                    }
+                                }
+                            }
+                            
+                            // Heart Rate Section
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text("Resting Heart Rate")
+                                    .font(.subheadline)
+                                    .foregroundColor(.pink)
+                                    .fontWeight(.medium)
+                                
+                                HStack {
+                                    TextField("72", text: $restingHeartRate)
+                                        .keyboardType(.numberPad)
+                                        .textFieldStyle(.roundedBorder)
+                                        .frame(maxWidth: 120)
+                                    Text("bpm")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                    Spacer()
+                                }
+                                
+                                // Heart rate category indicator
+                                if !restingHeartRate.isEmpty,
+                                   let heartRate = Double(restingHeartRate) {
+                                    HStack {
+                                        Image(systemName: "heart.fill")
+                                            .foregroundColor(heartRateColor(heartRate: heartRate))
+                                        Text(heartRateCategory(heartRate: heartRate))
+                                            .font(.caption)
+                                            .foregroundColor(heartRateColor(heartRate: heartRate))
+                                    }
+                                }
+                            }
                         }
                     }
                     .padding(.horizontal)
@@ -183,6 +286,12 @@ struct AddWeightView: View {
         newEntry.hips = Double(hips) ?? 0
         newEntry.legs = Double(legs) ?? 0
         newEntry.neck = Double(neck) ?? 0
+        
+        // Vital signs
+        newEntry.systolicBP = Double(systolicBP) ?? 0
+        newEntry.diastolicBP = Double(diastolicBP) ?? 0
+        newEntry.restingHeartRate = Double(restingHeartRate) ?? 0
+        
         newEntry.notes = notes
         
         // Save photo if available
@@ -200,6 +309,52 @@ struct AddWeightView: View {
         }
     }
     
+    // Blood pressure helper methods
+    private func bloodPressureCategory(systolic: Double, diastolic: Double) -> String {
+        if systolic < 120 && diastolic < 80 {
+            return "Normal"
+        } else if systolic < 130 && diastolic < 80 {
+            return "Elevated"
+        } else if (systolic >= 130 && systolic < 140) || (diastolic >= 80 && diastolic < 90) {
+            return "Stage 1 High"
+        } else if systolic >= 140 || diastolic >= 90 {
+            return "Stage 2 High"
+        } else {
+            return "Consult Doctor"
+        }
+    }
+    
+    private func bloodPressureColor(systolic: Double, diastolic: Double) -> Color {
+        if systolic < 120 && diastolic < 80 {
+            return .green
+        } else if systolic < 130 && diastolic < 80 {
+            return .yellow
+        } else if (systolic >= 130 && systolic < 140) || (diastolic >= 80 && diastolic < 90) {
+            return .orange
+        } else {
+            return .red
+        }
+    }
+    
+    // Heart rate helper methods
+    private func heartRateCategory(heartRate: Double) -> String {
+        if heartRate < 60 {
+            return "Low (Bradycardia)"
+        } else if heartRate <= 100 {
+            return "Normal"
+        } else {
+            return "High (Tachycardia)"
+        }
+    }
+    
+    private func heartRateColor(heartRate: Double) -> Color {
+        if heartRate < 60 || heartRate > 100 {
+            return .orange
+        } else {
+            return .green
+        }
+    }
+    
     private func clearForm() {
         weight = ""
         bodyFat = ""
@@ -210,6 +365,9 @@ struct AddWeightView: View {
         hips = ""
         legs = ""
         neck = ""
+        systolicBP = ""
+        diastolicBP = ""
+        restingHeartRate = ""
         notes = ""
         photoImage = nil
         selectedPhoto = nil

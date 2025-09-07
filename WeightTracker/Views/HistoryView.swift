@@ -112,11 +112,16 @@ struct WeightEntryRow: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
-                if entry.hasMeasurements || !entry.wrappedNotes.isEmpty {
+                if entry.hasMeasurements || entry.hasVitalSigns || !entry.wrappedNotes.isEmpty {
                     HStack {
                         if entry.hasMeasurements {
                             Image(systemName: "ruler")
                                 .foregroundColor(.blue)
+                                .font(.caption)
+                        }
+                        if entry.hasVitalSigns {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.red)
                                 .font(.caption)
                         }
                         if !entry.wrappedNotes.isEmpty {
@@ -131,6 +136,48 @@ struct WeightEntryRow: View {
                         }
                     }
                     .font(.caption2)
+                }
+                
+                // Display vital signs if available
+                if entry.hasVitalSigns {
+                    VStack(alignment: .leading, spacing: 2) {
+                        if !entry.displayBloodPressure.isEmpty {
+                            HStack {
+                                Text("BP:")
+                                    .foregroundColor(.secondary)
+                                    .font(.caption2)
+                                Text(entry.displayBloodPressure)
+                                    .font(.caption2)
+                                    .fontWeight(.medium)
+                                Text("mmHg")
+                                    .foregroundColor(.secondary)
+                                    .font(.caption2)
+                                if !entry.bloodPressureCategory.isEmpty {
+                                    Text("(\(entry.bloodPressureCategory))")
+                                        .foregroundColor(.secondary)
+                                        .font(.caption2)
+                                }
+                            }
+                        }
+                        if !entry.displayRestingHeartRate.isEmpty {
+                            HStack {
+                                Text("HR:")
+                                    .foregroundColor(.secondary)
+                                    .font(.caption2)
+                                Text(entry.displayRestingHeartRate)
+                                    .font(.caption2)
+                                    .fontWeight(.medium)
+                                Text("bpm")
+                                    .foregroundColor(.secondary)
+                                    .font(.caption2)
+                                if !entry.heartRateCategory.isEmpty {
+                                    Text("(\(entry.heartRateCategory))")
+                                        .foregroundColor(.secondary)
+                                        .font(.caption2)
+                                }
+                            }
+                        }
+                    }
                 }
             }
             
@@ -186,6 +233,9 @@ struct EditWeightView: View {
     @State private var hips: String
     @State private var legs: String
     @State private var neck: String
+    @State private var systolicBP: String
+    @State private var diastolicBP: String
+    @State private var restingHeartRate: String
     @State private var notes: String
     @State private var photoImage: UIImage?
     
@@ -204,6 +254,9 @@ struct EditWeightView: View {
         _hips = State(initialValue: entry.hips > 0 ? String(format: "%.1f", entry.hips) : "")
         _legs = State(initialValue: entry.legs > 0 ? String(format: "%.1f", entry.legs) : "")
         _neck = State(initialValue: entry.neck > 0 ? String(format: "%.1f", entry.neck) : "")
+        _systolicBP = State(initialValue: entry.systolicBP > 0 ? String(format: "%.0f", entry.systolicBP) : "")
+        _diastolicBP = State(initialValue: entry.diastolicBP > 0 ? String(format: "%.0f", entry.diastolicBP) : "")
+        _restingHeartRate = State(initialValue: entry.restingHeartRate > 0 ? String(format: "%.0f", entry.restingHeartRate) : "")
         _notes = State(initialValue: entry.wrappedNotes)
         
         if let photoData = entry.photoData, let image = UIImage(data: photoData) {
@@ -252,6 +305,67 @@ struct EditWeightView: View {
                             MeasurementField(title: "Hips", value: $hips, unit: "in")
                             MeasurementField(title: "Legs", value: $legs, unit: "in")
                             MeasurementField(title: "Neck", value: $neck, unit: "in")
+                        }
+                    }
+                    .padding(.horizontal)
+                    
+                    // Vital signs
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("Vital Signs")
+                            .font(.headline)
+                        
+                        VStack(spacing: 15) {
+                            // Blood Pressure
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text("Blood Pressure")
+                                    .font(.subheadline)
+                                    .foregroundColor(.red)
+                                    .fontWeight(.medium)
+                                
+                                HStack(spacing: 10) {
+                                    VStack(alignment: .leading, spacing: 5) {
+                                        Text("Systolic")
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                        TextField("120", text: $systolicBP)
+                                            .keyboardType(.numberPad)
+                                            .textFieldStyle(.roundedBorder)
+                                    }
+                                    
+                                    Text("/")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.secondary)
+                                        .padding(.top, 15)
+                                    
+                                    VStack(alignment: .leading, spacing: 5) {
+                                        Text("Diastolic")
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                        TextField("80", text: $diastolicBP)
+                                            .keyboardType(.numberPad)
+                                            .textFieldStyle(.roundedBorder)
+                                    }
+                                }
+                            }
+                            
+                            // Heart Rate
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text("Resting Heart Rate")
+                                    .font(.subheadline)
+                                    .foregroundColor(.pink)
+                                    .fontWeight(.medium)
+                                
+                                HStack {
+                                    TextField("72", text: $restingHeartRate)
+                                        .keyboardType(.numberPad)
+                                        .textFieldStyle(.roundedBorder)
+                                        .frame(maxWidth: 120)
+                                    Text("bpm")
+                                        .foregroundColor(.secondary)
+                                    Spacer()
+                                }
+                            }
                         }
                     }
                     .padding(.horizontal)
@@ -326,6 +440,12 @@ struct EditWeightView: View {
         entry.hips = Double(hips) ?? 0
         entry.legs = Double(legs) ?? 0
         entry.neck = Double(neck) ?? 0
+        
+        // Vital signs
+        entry.systolicBP = Double(systolicBP) ?? 0
+        entry.diastolicBP = Double(diastolicBP) ?? 0
+        entry.restingHeartRate = Double(restingHeartRate) ?? 0
+        
         entry.notes = notes
         
         do {
