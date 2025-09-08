@@ -7,35 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A1234567890123456789012A /* WeightTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789012B /* WeightTrackerApp.swift */; };
-		A1234567890123456789012C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789012D /* ContentView.swift */; };
-		A1234567890123456789012E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789012F /* Assets.xcassets */; };
-		A1234567890123456789013A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789013B /* Preview Assets.xcassets */; };
-		A1234567890123456789013C /* WeightEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789013D /* WeightEntry.swift */; };
-		A1234567890123456789013E /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789013F /* DataModel.xcdatamodeld */; };
-		A1234567890123456789014A /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789014B /* PersistenceController.swift */; };
-		A1234567890123456789014C /* AddWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789014D /* AddWeightView.swift */; };
-		A1234567890123456789014E /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789014F /* HistoryView.swift */; };
-		A1234567890123456789015A /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789015B /* ChartsView.swift */; };
+		0A82B9ADDD714D8798EC2FC4 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50A5024384A94CD58270CF6F /* DataModel.xcdatamodeld */; };
+		23AEE84BD9D74F5695359701 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87EC38518E349D193D448CA /* ContentView.swift */; };
+		2ADB46EB1BA247BAAF2F2FDF /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBA106B3FBE436C8E734E95 /* PersistenceController.swift */; };
+		63F4B238E90C4A0BBA92A2C8 /* AddWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FAFB05A82741D5AE880BEA /* AddWeightView.swift */; };
+		698449C8DB3A45D8B7D16747 /* WeightEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620099340C1B4C4691571ABC /* WeightEntry.swift */; };
+		6D48170B204D49C3A536A52C /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EBD65475AC4DC0BA55A79C /* ChartsView.swift */; };
+		94F9CD22AD7848C9814E7F1C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F3E3F69044D939B39E53C /* HistoryView.swift */; };
+		AB9F05B2DCCB43A9B3F799AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A754B2A9564403B12E4E13 /* Assets.xcassets */; };
+		C68C1D088C6340CAB153667E /* WeightTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3F62AEDB34E719B712DCC /* WeightTrackerApp.swift */; };
+		D658790EF438457AB180DA4E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01F3027CDB384CE6B0C005A7 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A1234567890123456789001A /* WeightTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeightTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1234567890123456789012B /* WeightTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightTrackerApp.swift; sourceTree = "<group>"; };
-		A1234567890123456789012D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		A1234567890123456789012F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A1234567890123456789013B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		A1234567890123456789013D /* WeightEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightEntry.swift; sourceTree = "<group>"; };
-		A1234567890123456789014A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		A1234567890123456789014B /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
-		A1234567890123456789014D /* AddWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeightView.swift; sourceTree = "<group>"; };
-		A1234567890123456789014F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		A1234567890123456789015B /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
-		A1234567890123456789016A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01F3027CDB384CE6B0C005A7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		058F3E3F69044D939B39E53C /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		14A754B2A9564403B12E4E13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2FBA106B3FBE436C8E734E95 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		620099340C1B4C4691571ABC /* WeightEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightEntry.swift; sourceTree = "<group>"; };
+		A9EBD65475AC4DC0BA55A79C /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
+		B87EC38518E349D193D448CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BFE3F62AEDB34E719B712DCC /* WeightTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightTrackerApp.swift; sourceTree = "<group>"; };
+		C3FAFB05A82741D5AE880BEA /* AddWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeightView.swift; sourceTree = "<group>"; };
+		D4C3B2A19087654321FEDCBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1F2A3B4C5D6789012345678 /* WeightTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeightTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1E2D3C4B5A6978081726354 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A1234567890123456789001B /* Frameworks */ = {
+		A1B2C3D4E5F6789012345670 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -45,82 +45,82 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A1234567890123456789001C /* WeightTracker */ = {
+		A6F5E4D3C28170594837261C /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				A1234567890123456789012B /* WeightTrackerApp.swift */,
-				A1234567890123456789012D /* ContentView.swift */,
-				A1234567890123456789017A /* Models */,
-				A1234567890123456789017B /* Views */,
-				A1234567890123456789017C /* Data */,
-				A1234567890123456789012F /* Assets.xcassets */,
-				A1234567890123456789016A /* Info.plist */,
-				A1234567890123456789013A /* Preview Content */,
-			);
-			path = WeightTracker;
-			sourceTree = "<group>";
-		};
-		A1234567890123456789013A /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				A1234567890123456789013B /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		A1234567890123456789017A /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				A1234567890123456789013D /* WeightEntry.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		A1234567890123456789017B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A1234567890123456789014D /* AddWeightView.swift */,
-				A1234567890123456789014F /* HistoryView.swift */,
-				A1234567890123456789015B /* ChartsView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		A1234567890123456789017C /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				A1234567890123456789013F /* DataModel.xcdatamodeld */,
-				A1234567890123456789014B /* PersistenceController.swift */,
+				50A5024384A94CD58270CF6F /* DataModel.xcdatamodeld */,
+				2FBA106B3FBE436C8E734E95 /* PersistenceController.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
 		};
-		A1234567890123456789001D = {
+		B5A493827160594837261D2E /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				A1234567890123456789001C /* WeightTracker */,
-				A1234567890123456789001E /* Products */,
+				01F3027CDB384CE6B0C005A7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C4B3A291807654321FEDCBA9 = {
+			isa = PBXGroup;
+			children = (
+				F9E8D7C6B5A4938271605948 /* WeightTracker */,
+				D3C2B1A09876543210FEDCB8 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A1234567890123456789001E /* Products */ = {
+		D3C2B1A09876543210FEDCB8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A1234567890123456789001A /* WeightTracker.app */,
+				E1F2A3B4C5D6789012345678 /* WeightTracker.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E8D7C6B5A49382716059483A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				620099340C1B4C4691571ABC /* WeightEntry.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F7E6D5C4B39281605948372B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C3FAFB05A82741D5AE880BEA /* AddWeightView.swift */,
+				058F3E3F69044D939B39E53C /* HistoryView.swift */,
+				A9EBD65475AC4DC0BA55A79C /* ChartsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F9E8D7C6B5A4938271605948 /* WeightTracker */ = {
+			isa = PBXGroup;
+			children = (
+				BFE3F62AEDB34E719B712DCC /* WeightTrackerApp.swift */,
+				B87EC38518E349D193D448CA /* ContentView.swift */,
+				E8D7C6B5A49382716059483A /* Models */,
+				F7E6D5C4B39281605948372B /* Views */,
+				A6F5E4D3C28170594837261C /* Data */,
+				14A754B2A9564403B12E4E13 /* Assets.xcassets */,
+				D4C3B2A19087654321FEDCBA /* Info.plist */,
+				B5A493827160594837261D2E /* Preview Content */,
+			);
+			path = WeightTracker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A1234567890123456789001F /* WeightTracker */ = {
+		B2A19087654321FEDCBA9876 /* WeightTracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A123456789012345678901AA /* Build configuration list for PBXNativeTarget "WeightTracker" */;
+			buildConfigurationList = A90876543210FEDCBA987654 /* Build configuration list for PBXNativeTarget "WeightTracker" */;
 			buildPhases = (
-				A1234567890123456789001B /* Frameworks */,
-				A1234567890123456789002A /* Sources */,
-				A1234567890123456789002B /* Resources */,
+				A1B2C3D4E5F6789012345670 /* Frameworks */,
+				8765432109FEDCBA98765432 /* Sources */,
+				7654321098FEDCBA987654321 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -128,25 +128,25 @@
 			);
 			name = WeightTracker;
 			productName = WeightTracker;
-			productReference = A1234567890123456789001A /* WeightTracker.app */;
+			productReference = E1F2A3B4C5D6789012345678 /* WeightTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A1234567890123456789002C /* Project object */ = {
+		654321098FEDCBA9876543210 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					A1234567890123456789001F = {
+					B2A19087654321FEDCBA9876 = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
-			buildConfigurationList = A1234567890123456789002D /* Build configuration list for PBXProject "WeightTracker" */;
+			buildConfigurationList = 543210987FEDCBA98765432 /* Build configuration list for PBXProject "WeightTracker" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -154,48 +154,170 @@
 				en,
 				Base,
 			);
-			mainGroup = A1234567890123456789001D;
-			productRefGroup = A1234567890123456789001E /* Products */;
+			mainGroup = C4B3A291807654321FEDCBA9;
+			productRefGroup = D3C2B1A09876543210FEDCB8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A1234567890123456789001F /* WeightTracker */,
+				B2A19087654321FEDCBA9876 /* WeightTracker */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A1234567890123456789002B /* Resources */ = {
+		7654321098FEDCBA987654321 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1234567890123456789013A /* Preview Assets.xcassets in Resources */,
-				A1234567890123456789012E /* Assets.xcassets in Resources */,
+				D658790EF438457AB180DA4E /* Preview Assets.xcassets in Resources */,
+				AB9F05B2DCCB43A9B3F799AB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A1234567890123456789002A /* Sources */ = {
+		8765432109FEDCBA98765432 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1234567890123456789013E /* DataModel.xcdatamodeld in Sources */,
-				A1234567890123456789012C /* ContentView.swift in Sources */,
-				A1234567890123456789014C /* AddWeightView.swift in Sources */,
-				A1234567890123456789014E /* HistoryView.swift in Sources */,
-				A1234567890123456789015A /* ChartsView.swift in Sources */,
-				A1234567890123456789014A /* PersistenceController.swift in Sources */,
-				A1234567890123456789013C /* WeightEntry.swift in Sources */,
-				A1234567890123456789012A /* WeightTrackerApp.swift in Sources */,
+				0A82B9ADDD714D8798EC2FC4 /* DataModel.xcdatamodeld in Sources */,
+				23AEE84BD9D74F5695359701 /* ContentView.swift in Sources */,
+				63F4B238E90C4A0BBA92A2C8 /* AddWeightView.swift in Sources */,
+				94F9CD22AD7848C9814E7F1C /* HistoryView.swift in Sources */,
+				6D48170B204D49C3A536A52C /* ChartsView.swift in Sources */,
+				2ADB46EB1BA247BAAF2F2FDF /* PersistenceController.swift in Sources */,
+				698449C8DB3A45D8B7D16747 /* WeightEntry.swift in Sources */,
+				C68C1D088C6340CAB153667E /* WeightTrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A1234567890123456789002E /* Debug */ = {
+		109876543210987FEDCBA654 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WeightTracker/Preview Content\"";
+				DEVELOPMENT_TEAM = 3378DZZB6G;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WeightTracker/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Weight Tracker";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera access to take progress photos for your weight tracking entries.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs photo library access to save and select progress photos for your weight tracking entries.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hitorro.WeightTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		210987654321098FEDCBA765 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WeightTracker/Preview Content\"";
+				DEVELOPMENT_TEAM = 3378DZZB6G;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WeightTracker/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Weight Tracker";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera access to take progress photos for your weight tracking entries.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs photo library access to save and select progress photos for your weight tracking entries.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hitorro.WeightTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		321098765432109FEDCBA876 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		432109876543210FEDCBA987 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -246,160 +368,32 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
-		};
-		A1234567890123456789002F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		A123456789012345678901AB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"WeightTracker/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WeightTracker/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera access to take progress photos.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs photo library access to save and select progress photos.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.WeightTracker;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		A123456789012345678901AC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"WeightTracker/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WeightTracker/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera access to take progress photos.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs photo library access to save and select progress photos.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.WeightTracker;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A1234567890123456789002D /* Build configuration list for PBXProject "WeightTracker" */ = {
+		543210987FEDCBA98765432 /* Build configuration list for PBXProject "WeightTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A1234567890123456789002E /* Debug */,
-				A1234567890123456789002F /* Release */,
+				432109876543210FEDCBA987 /* Debug */,
+				321098765432109FEDCBA876 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A123456789012345678901AA /* Build configuration list for PBXNativeTarget "WeightTracker" */ = {
+		A90876543210FEDCBA987654 /* Build configuration list for PBXNativeTarget "WeightTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A123456789012345678901AB /* Debug */,
-				A123456789012345678901AC /* Release */,
+				210987654321098FEDCBA765 /* Debug */,
+				109876543210987FEDCBA654 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -407,17 +401,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		A1234567890123456789013F /* DataModel.xcdatamodeld */ = {
+		50A5024384A94CD58270CF6F /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				A1234567890123456789014A /* DataModel.xcdatamodel */,
+				F1E2D3C4B5A6978081726354 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = A1234567890123456789014A /* DataModel.xcdatamodel */;
+			currentVersion = F1E2D3C4B5A6978081726354 /* DataModel.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = A1234567890123456789002C /* Project object */;
+	rootObject = 654321098FEDCBA9876543210 /* Project object */;
 }
