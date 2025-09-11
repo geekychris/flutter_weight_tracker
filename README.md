@@ -4,6 +4,17 @@ A comprehensive weight and body measurement tracking app for iOS, iPadOS, and ma
 
 ## Features
 
+
+
+Progress:
+
+![img.png](doc_images/img.png)
+
+![img_1.png](doc_images/img_1.png)
+
+![img_2.png](doc_images/img_2.png)
+
+
 ### 📊 Weight Tracking
 - Record daily weight measurements
 - Track weight changes over time
